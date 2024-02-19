@@ -5,7 +5,7 @@ from . import models
 
 
 @strawberry_django.type(models.Member)
-class Member:
+class MemberType:
     id: auto
     first_name: str
     last_name: str
