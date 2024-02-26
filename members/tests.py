@@ -39,6 +39,12 @@ class MemberTestCase(TestCase):
         self.assertEqual(new_member.first_name, "Jane")
         self.assertEqual(new_member.last_name, "Doe")
 
+    def test_update_member(self):
+        updated_member = Member.update_member(self.member.email, "Jane", "Smith")
+        self.assertIsNotNone(updated_member)
+        self.assertEqual(updated_member.first_name, "Jane")
+        self.assertEqual(updated_member.last_name, "Smith")
+
     def test_delete_member(self):
         Member.delete_member(self.member.email)
         self.assertIsNone(Member.get_member_with_email(self.member.email))

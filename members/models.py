@@ -5,9 +5,11 @@ class Member(models.Model):
     first_name = models.CharField(max_length=255)
     last_name = models.CharField(max_length=255, blank=True)
     email = models.EmailField(unique=True)
+    phone_number = models.CharField(null=True, max_length=16)
+    date_joined = models.DateField(auto_now_add=True, null=True)
 
     def __str__(self):
-        return f"{self.first_name} {self.last_name} ({self.email})"
+        return f"{self.first_name} {self.last_name}"
 
     def get_full_name(self):
         return f"{self.first_name} {self.last_name}"
@@ -33,6 +35,17 @@ class Member(models.Model):
         )
         member.save()
         return member
+
+    def update_member(email, first_name=None, last_name=None):
+        member = Member.get_member_with_email(email)
+        if member:
+            if first_name:
+                member.first_name = first_name
+            if last_name:
+                member.last_name = last_name
+            member.save()
+            return member
+        return None
 
     def delete_member(email):
         member = Member.get_member_with_email(email)

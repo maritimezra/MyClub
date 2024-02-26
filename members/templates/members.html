@@ -1,11 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Members log</title>
-</head>
-<body>
-    {%  %}
-</body>
-</html>
+{% extends "master.html" %}
+
+{% block title %}
+    Members log
+{% endblock %}
+
+{% block content %}
+    <div class="mycard">
+        <p><a href="/">HOME</a></p>
+        <h1>Members</h1>
+        <ul>
+            {% for x in mymembers %}
+                <li onclick="window.location = 'details/{{ x.id }}'">{{ x.first_name }} {{ x.last_name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
